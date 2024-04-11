@@ -29,7 +29,6 @@ public class BookController {
 	
 	@Autowired
 	private BookService bookService;
-	private BooksRepository bookRepo;
 
 	@GetMapping("/list")
     public List<Books> listBooks() {
