@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.JsonMappingException;
 
-import DashEsgApi.DashEsgApi.entities.Books;
 import DashEsgApi.DashEsgApi.model.BookModel;
+import DashEsgApi.DashEsgApi.model.Books;
 import DashEsgApi.DashEsgApi.model.SearchRequest;
 import DashEsgApi.DashEsgApi.repository.BooksRepository;
 import DashEsgApi.DashEsgApi.service.BookService;

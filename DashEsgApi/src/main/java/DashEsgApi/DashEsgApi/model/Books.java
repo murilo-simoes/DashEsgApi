@@ -1,4 +1,4 @@
-package DashEsgApi.DashEsgApi.entities;
+package DashEsgApi.DashEsgApi.model;
 
 import java.util.Objects;
 

@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.lang.Nullable;
 
-import DashEsgApi.DashEsgApi.entities.Books;
 import DashEsgApi.DashEsgApi.model.BookModel;
+import DashEsgApi.DashEsgApi.model.Books;
 
 
 public interface BooksRepository extends JpaRepository<Books, Integer>{
