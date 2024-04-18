@@ -11,8 +11,8 @@ import org.springframework.util.Assert;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import DashEsgApi.DashEsgApi.entities.Books;
 import DashEsgApi.DashEsgApi.model.BookModel;
-import DashEsgApi.DashEsgApi.model.Books;
 import DashEsgApi.DashEsgApi.repository.BooksRepository;
 
 @Service
