@@ -1,26 +1,16 @@
 package DashEsgApi.DashEsgApi.controllers;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.Random;
 
-import org.mapstruct.BeanMapping;
-import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.databind.JsonMappingException;
-
-import DashEsgApi.DashEsgApi.entities.Books;
-import DashEsgApi.DashEsgApi.model.BookModel;
-import DashEsgApi.DashEsgApi.model.SearchRequest;
-import DashEsgApi.DashEsgApi.repository.BooksRepository;
+import DashEsgApi.DashEsgApi.model.Books;
 import DashEsgApi.DashEsgApi.service.BookService;
 
 
@@ -30,7 +20,7 @@ public class BookController {
 	@Autowired
 	private BookService bookService;
 
-	@GetMapping("/list")
+	@GetMapping("/book/list")
     public List<Books> listBooks() {
 		return bookService.getAllBooks();
     }
