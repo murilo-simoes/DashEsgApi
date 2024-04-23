@@ -2,6 +2,7 @@ package DashEsgApi.DashEsgApi.model;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.Collection;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -13,24 +14,34 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import antlr.collections.List;
+
 
 @Entity
 @DynamicUpdate(true)
-public class Users {
+public class Users{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(nullable = false)
 	private Integer id;
 
+	@Column(nullable = false)
 	private String name;
-	
+
+	@Column(unique = true, length = 100, nullable = false)
 	private String email;
 
+	@Column(nullable = false)
 	private String password;
 	
 	public Integer id_company;
 	
     @CreationTimestamp
+    @Column(updatable = false)
 	public Timestamp created_at;
 	
 
@@ -70,6 +81,7 @@ public class Users {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
 	
 	
 	 public Users copy() {

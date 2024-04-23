@@ -28,21 +28,28 @@ public class Company {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	@Column(nullable = false)
 	private String name;
 	
 	private Integer employee_qty;
 
+	@Column(nullable = false)
 	private Double esg_goal;
 
+	@Column(nullable = false)
 	private String branch;
 
+	@Column(unique = true, nullable = false)
 	private String cnpj;
 
+	@Column(nullable = false)
 	private String password;
 
+	@Column(nullable = false)
 	private Integer id_survey;
 
     @CreationTimestamp
+    @Column(updatable = false)
 	public Timestamp created_at;
 	
 
