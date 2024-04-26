@@ -4,17 +4,17 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import DashEsgApi.DashEsgApi.model.Users;
-public interface UserRepository extends JpaRepository<Users, Integer>{
+import DashEsgApi.DashEsgApi.model.User;
+public interface UserRepository extends JpaRepository<User, Integer>{
 	
 
-	Users findById(int id);
+	User findById(int id);
 	
-	Users findByEmail(String email);
+	User findByEmail(String email);
 	
-	Users save(Users user);
+	User save(User user);
 	
-	List<Users> findAll();
+	List<User> findAll();
 	
 	void deleteById(int id);
 }

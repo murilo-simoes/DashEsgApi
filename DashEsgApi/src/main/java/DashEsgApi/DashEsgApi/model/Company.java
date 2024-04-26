@@ -21,13 +21,6 @@ public class Company {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
 	@Column(nullable = false)
 	private String name;
 	
@@ -50,7 +43,25 @@ public class Company {
 
     @CreationTimestamp
     @Column(updatable = false)
-	public Timestamp created_at;
+	private Timestamp created_at;
+    
+    @Column(nullable = false)
+    private Integer user_id_creator;
+    
+	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+    
+    public Integer getUser_id_creator() {
+		return user_id_creator;
+	}
+	public void setUser_id_creator(Integer user_id_creator) {
+		this.user_id_creator = user_id_creator;
+	}
 	
 
 	public Integer getId_survey() {

@@ -7,7 +7,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import DashEsgApi.DashEsgApi.model.Books;
-import DashEsgApi.DashEsgApi.model.Users;
+import DashEsgApi.DashEsgApi.model.User;
+import DashEsgApi.DashEsgApi.model.UserDeveloper;
+import DashEsgApi.DashEsgApi.model.UserEmployee;
+import DashEsgApi.DashEsgApi.model.UserSupervisor;
 import DashEsgApi.DashEsgApi.repository.UserRepository;
 
 @Service
@@ -21,36 +24,59 @@ public class UserService {
 	    this.userRepository = userRepo;
 	}
 	
-	public Users createUser(Users user) throws Exception {
-		if(user.getName() == null || user.getEmail() == null || user.getPassword() == null) {
+	
+	
+	public User createUser(User user) throws Exception {
+		
+		//VERIFICA SE O USUÁRIO PREENCHEU TODOS OS CAMPOS OBRIGATÓRIOS
+		if(user.getName() == null || user.getEmail() == null || user.getPassword() == null || user.getUser_type() == null) {
 			throw new Exception("Preencha todos os campos corretamente!");
 		}
-		
-		Users u = userRepository.findByEmail(user.getEmail());
+
+		//VERIFICA SE O USUÁRIO JA EXISTE
+		User u = userRepository.findByEmail(user.getEmail());
 		
 		if(u != null) {
 			throw new Exception("Esse e-mail já está cadastrado!");
 		}
 		
+		//CRIPTOGRAFA A SENHA DO USUÁRIO
 		BCryptPasswordEncoder criptografar = new BCryptPasswordEncoder();
 		String senhaCriptografada = criptografar.encode(user.getPassword());
 		user.setPassword(senhaCriptografada);
 		
-		return userRepository.save(user);
+		
+		//IDENTIFICA QUE TIPO DE USUÁRIO VAMOS CADASTRAR
+		
+		User newUser;
+		
+		if(user.getUser_type() == 1) {
+			UserSupervisor supervisor = new UserSupervisor();
+			newUser = supervisor.identifyUser(user);
+		}else if(user.getUser_type() == 2) {
+			UserEmployee funcionario = new UserEmployee();
+			newUser = funcionario.identifyUser(user);
+		}else {
+			UserDeveloper desenvolvedor = new UserDeveloper();
+			newUser = desenvolvedor.identifyUser(user);
+		}
+		
+		// CADASTRA O USUÁRIO
+		return userRepository.save(newUser);
 		
 	}
 	
-	public Users findUser(int id) {
+	public User findUser(int id) {
 		return userRepository.findById(id);
 				
 	}
 	
-	public Users loginUser(String email, String pass) throws Exception {
+	public User loginUser(String email, String pass) throws Exception {
 		if(email == null || pass == null) {
 			throw new Exception("Preencha todos os campos corretamente!");
 		}
 		
-		Users user = userRepository.findByEmail(email);
+		User user = userRepository.findByEmail(email);
 		
 		BCryptPasswordEncoder criptografar = new BCryptPasswordEncoder();
 		
@@ -69,11 +95,14 @@ public class UserService {
 	}
 	
 	
-	public List<Users> getUsers(){
+	public List<User> getUsers(){
 		return userRepository.findAll();
 	}
 	
 	public void deleteUser(int id) {
+	
+		// FAZER A VERIFICAÇÃO SE ESSE USUÁRIO É O CRIADOR DA EMPRESA, SE SIM, EXCLUIR ELE E A EMPRESA E TIRAR O ID DA EMPRESA DOS FUNCIONARIOS
+		
 		userRepository.deleteById(id);
 	}
 	

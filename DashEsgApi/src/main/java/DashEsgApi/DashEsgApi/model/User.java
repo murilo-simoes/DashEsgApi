@@ -22,7 +22,8 @@ import antlr.collections.List;
 
 @Entity
 @DynamicUpdate(true)
-public class Users{
+@Table(name = "users")
+public class User{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,13 +39,38 @@ public class Users{
 	@Column(nullable = false)
 	private String password;
 	
-	public Integer id_company;
+	private Integer id_company;
+	
+	@Column(nullable = false)
+	private Integer user_type;
+	
+	@Column(nullable = false)
+	private String user_desc;
 	
     @CreationTimestamp
     @Column(updatable = false)
-	public Timestamp created_at;
+	private Timestamp created_at;
 	
+	
+	
+	public User identifyUser(User user) {
+		return user;
+	}
 
+	
+	
+	public Integer getUser_type() {
+		return user_type;
+	}
+	public void setUser_type(Integer user_type) {
+		this.user_type = user_type;
+	}
+	public String getUser_desc() {
+		return user_desc;
+	}
+	public void setUser_desc(String user_desc) {
+		this.user_desc = user_desc;
+	}
 	public Integer getId_company() {
 		return id_company;
 	}
@@ -81,27 +107,15 @@ public class Users{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
-	
-	 public Users copy() {
-		 Users copy = new Users();
-	        copy.id = this.id;
-	        copy.name = this.name;
-	        copy.email = this.email;
-	        copy.password = this.password;
-	        copy.created_at = this.created_at;
-	        return copy;
-	  }
-	 
-		@Override
-		public boolean equals(Object obj) {
-	        if (this == obj) return true;
-	        if (obj == null || getClass() != obj.getClass()) return false;
-	        Users u = (Users) obj;
-	        return id == u.id &&
-	                Objects.equals(email, u.email); 
-		}
 
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", id_company="
+				+ id_company + ", user_type=" + user_type + ", user_desc=" + user_desc + ", created_at=" + created_at
+				+ "]";
+	}
+	
+	
+	
 
 }

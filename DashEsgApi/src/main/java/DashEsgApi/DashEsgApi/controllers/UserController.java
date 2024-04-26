@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import DashEsgApi.DashEsgApi.model.Books;
-import DashEsgApi.DashEsgApi.model.Users;
+import DashEsgApi.DashEsgApi.model.User;
 import DashEsgApi.DashEsgApi.service.UserService;
 
 @RestController
@@ -21,22 +21,22 @@ public class UserController {
 	private UserService userService;
 	
 	@PostMapping("/user/add")
-	public Users insertUser(@RequestBody Users user) throws Exception {
+	public User insertUser(@RequestBody User user) throws Exception {
 		return userService.createUser(user);
 	}
 	
 	@PostMapping("/user/find/{id}")
-	public Users searchBook(@RequestParam int id){
+	public User searchBook(@RequestParam int id){
 		return userService.findUser(id);
 	}
 	
 	@PostMapping("/user/login")
-	public Users searchBook(@RequestBody Map<String, String> json) throws Exception{
+	public User searchBook(@RequestBody Map<String, String> json) throws Exception{
 		return userService.loginUser(json.get("email"), json.get("password"));
 	}
 	
 	@GetMapping("/user/get")
-	public List<Users> findAllUsers(){
+	public List<User> findAllUsers(){
 		return userService.getUsers();
 	}
 	
