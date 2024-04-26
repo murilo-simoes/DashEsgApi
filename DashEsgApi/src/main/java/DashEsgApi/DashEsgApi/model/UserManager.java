@@ -2,12 +2,12 @@ package DashEsgApi.DashEsgApi.model;
 
 import java.sql.Timestamp;
 
-public class UserSupervisor extends User{
+public class UserManager extends User{
 
 	@Override
 	public User identifyUser(User user) {
 		user.setUser_type(1);
-		user.setUser_desc("Supervisor");
+		user.setUser_desc("Gerente");
 		return user;
 	}
 	

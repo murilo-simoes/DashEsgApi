@@ -10,7 +10,7 @@ import DashEsgApi.DashEsgApi.model.Books;
 import DashEsgApi.DashEsgApi.model.User;
 import DashEsgApi.DashEsgApi.model.UserDeveloper;
 import DashEsgApi.DashEsgApi.model.UserEmployee;
-import DashEsgApi.DashEsgApi.model.UserSupervisor;
+import DashEsgApi.DashEsgApi.model.UserManager;
 import DashEsgApi.DashEsgApi.repository.UserRepository;
 
 @Service
@@ -51,7 +51,7 @@ public class UserService {
 		User newUser;
 		
 		if(user.getUser_type() == 1) {
-			UserSupervisor supervisor = new UserSupervisor();
+			UserManager supervisor = new UserManager();
 			newUser = supervisor.identifyUser(user);
 		}else if(user.getUser_type() == 2) {
 			UserEmployee funcionario = new UserEmployee();
