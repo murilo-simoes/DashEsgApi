@@ -36,9 +36,6 @@ public class Company {
 	private String cnpj;
 
 	@Column(nullable = false)
-	private String password;
-
-	@Column(nullable = false)
 	private Integer id_survey;
 
     @CreationTimestamp
@@ -48,7 +45,16 @@ public class Company {
     @Column(nullable = false)
     private Integer user_id_creator;
     
+    @Column(nullable = false)
+    private String country;
+    
 	
+	public String getCountry() {
+		return country;
+	}
+	public void setCountry(String country) {
+		this.country = country;
+	}
 	public Integer getId() {
 		return id;
 	}
@@ -105,12 +111,6 @@ public class Company {
 	}
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	
