@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import DashEsgApi.DashEsgApi.model.Books;
 import DashEsgApi.DashEsgApi.model.User;
 import DashEsgApi.DashEsgApi.model.UserDeveloper;
 import DashEsgApi.DashEsgApi.model.UserEmployee;
