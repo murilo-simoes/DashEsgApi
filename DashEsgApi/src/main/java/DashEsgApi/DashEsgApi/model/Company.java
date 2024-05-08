@@ -14,7 +14,7 @@ import org.hibernate.annotations.DynamicUpdate;
 
 
 @Entity
-@DynamicUpdate
+@DynamicUpdate(true)
 public class Company {
 	
 	@Id
@@ -25,7 +25,7 @@ public class Company {
 	private String name;
 	
 	@Column(nullable = false)
-	private String employee_qty;
+	private Integer employee_qty;
 
 	@Column(nullable = false)
 	private Double esg_goal;
@@ -36,8 +36,6 @@ public class Company {
 	@Column(unique = true, nullable = false)
 	private String cnpj;
 
-	@Column(nullable = false)
-	private Integer id_survey;
 
     @CreationTimestamp
     @Column(updatable = false)
@@ -70,13 +68,6 @@ public class Company {
 		this.user_id_creator = user_id_creator;
 	}
 	
-
-	public Integer getId_survey() {
-		return id_survey;
-	}
-	public void setId_survey(Integer id_survey) {
-		this.id_survey = id_survey;
-	}
 	public Timestamp getCreated_at() {
 		return created_at;
 	}
@@ -89,10 +80,10 @@ public class Company {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getEmployee_qty() {
+	public Integer getEmployee_qty() {
 		return employee_qty;
 	}
-	public void setEmployee_qty(String employee_qty) {
+	public void setEmployee_qty(Integer employee_qty) {
 		this.employee_qty = employee_qty;
 	}
 	public Double getEsg_goal() {

@@ -1,6 +1,7 @@
 package DashEsgApi.DashEsgApi.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -8,7 +9,7 @@ import DashEsgApi.DashEsgApi.model.User;
 public interface UserRepository extends JpaRepository<User, Integer>{
 	
 
-	User findById(int id);
+	Optional<User> findById(Integer id);
 	
 	User findByEmail(String email);
 	

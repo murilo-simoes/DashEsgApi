@@ -65,8 +65,8 @@ public class UserService {
 		
 	}
 	
-	public User findUser(int id) {
-		return userRepository.findById(id);
+	public User findUser(Integer id) {
+		return userRepository.findById(id).get();
 				
 	}
 	

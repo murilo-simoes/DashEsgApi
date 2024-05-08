@@ -39,6 +39,7 @@ public class User{
 	@Column(nullable = false)
 	private String password;
 	
+	@Column(updatable=true)
 	private Integer id_company;
 	
 	@Column(nullable = false)
