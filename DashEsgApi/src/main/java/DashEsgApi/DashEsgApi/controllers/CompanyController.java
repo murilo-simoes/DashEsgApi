@@ -3,6 +3,7 @@ package DashEsgApi.DashEsgApi.controllers;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,6 +36,21 @@ public class CompanyController {
 	@PostMapping("/company/addEmployee")
 	public String addEmployee(@RequestBody ObjectNode json) throws Exception{
 		return companyService.addEmployee(json.get("email").asText(), json.get("id_company").asInt());
+	}
+	
+	@PostMapping("/company/removeEmployee")
+	public String removeEmployee(@RequestParam int id_employee) throws Exception {
+		return companyService.deleteEmployee(id_employee);
+	}
+	
+	@PostMapping("/company/delete")
+	public String deleteCompany(@RequestParam int id) throws Exception{
+		return companyService.deleteCompany(id);
+	}
+	
+	@PostMapping("/company/existe")
+	public Integer existeCompany(@RequestParam String cnpj) {
+		return companyService.existeEmpresa(cnpj);
 	}
 	
 }

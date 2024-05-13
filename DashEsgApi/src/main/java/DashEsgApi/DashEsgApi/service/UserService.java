@@ -105,5 +105,11 @@ public class UserService {
 		userRepository.deleteById(id);
 	}
 	
+	public List<User> listUserByCompany(Integer id_company) {
+		List<User> u = userRepository.findAllByIdCompany(id_company);
+		
+		return u;
+	}
+	
 
 }

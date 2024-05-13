@@ -16,8 +16,11 @@ public class Survey {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(nullable = false)
+	@Column(unique = true,nullable = false)
 	private Integer id_company;
+	
+	@Column(nullable = false)
+	private String name;
 	
 	@Column(nullable = false)
 	private Double ambiental;
@@ -72,6 +75,12 @@ public class Survey {
 	
 	@Column(nullable = false)
 	private Double total_planejamento;
+
+	@Column(nullable = false)
+	private Double total_controle;
+	
+	@Column(nullable = false)
+	private Double total_acao;
 	
 	public Integer getId_company() {
 		return id_company;
@@ -81,6 +90,16 @@ public class Survey {
 		this.id_company = id_company;
 	}
 
+		
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	
 	public Double getAmbiental() {
 		return ambiental;
 	}
@@ -241,11 +260,6 @@ public class Survey {
 		this.total_acao = total_acao;
 	}
 
-	@Column(nullable = false)
-	private Double total_controle;
-	
-	@Column(nullable = false)
-	private Double total_acao;
 
 	public Integer getId() {
 		return id;

@@ -3,6 +3,7 @@ package DashEsgApi.DashEsgApi.model;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -14,16 +15,17 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import antlr.collections.List;
 
 
 @Entity
 @DynamicUpdate(true)
 @Table(name = "users")
-public class User{
+public class User implements UserDetails{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,8 +51,8 @@ public class User{
 	private String user_desc;
 	
     @CreationTimestamp
-    @Column(updatable = false)
-	private Timestamp created_at;
+    @Column(name="created_at", updatable = false)
+	private Timestamp createdAt;
 	
 	
 	
@@ -79,10 +81,10 @@ public class User{
 		this.id_company = id_company;
 	}
 	public Timestamp getCreated_at() {
-		return created_at;
+		return createdAt;
 	}
 	public void setCreated_at(Timestamp created_at) {
-		this.created_at = created_at;
+		this.createdAt = created_at;
 	}
 	public Integer getId() {
 		return id;
@@ -112,8 +114,56 @@ public class User{
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", id_company="
-				+ id_company + ", user_type=" + user_type + ", user_desc=" + user_desc + ", created_at=" + created_at
+				+ id_company + ", user_type=" + user_type + ", user_desc=" + user_desc + ", created_at=" + createdAt
 				+ "]";
+	}
+
+
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+	}
+
+
+
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return getEmail();
+	}
+
+
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 	
 	
