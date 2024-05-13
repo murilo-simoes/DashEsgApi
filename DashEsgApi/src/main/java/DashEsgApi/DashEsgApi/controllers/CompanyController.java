@@ -39,8 +39,8 @@ public class CompanyController {
 	}
 	
 	@PostMapping("/company/removeEmployee")
-	public String removeEmployee(@RequestParam int id_employee) throws Exception {
-		return companyService.deleteEmployee(id_employee);
+	public String removeEmployee(@RequestParam String email) throws Exception {
+		return companyService.deleteEmployee(email);
 	}
 	
 	@PostMapping("/company/delete")
@@ -52,5 +52,7 @@ public class CompanyController {
 	public Integer existeCompany(@RequestParam String cnpj) {
 		return companyService.existeEmpresa(cnpj);
 	}
+	
+
 	
 }

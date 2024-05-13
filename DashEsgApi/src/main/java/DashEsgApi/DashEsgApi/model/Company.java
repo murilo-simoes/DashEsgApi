@@ -25,7 +25,7 @@ public class Company {
 	private String name;
 	
 	@Column(nullable = false)
-	private Integer employee_qty;
+	private String employee_qty;
 
 	@Column(nullable = false)
 	private Double esg_goal;
@@ -80,10 +80,10 @@ public class Company {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Integer getEmployee_qty() {
+	public String getEmployee_qty() {
 		return employee_qty;
 	}
-	public void setEmployee_qty(Integer employee_qty) {
+	public void setEmployee_qty(String employee_qty) {
 		this.employee_qty = employee_qty;
 	}
 	public Double getEsg_goal() {

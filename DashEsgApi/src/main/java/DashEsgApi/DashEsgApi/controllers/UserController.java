@@ -46,8 +46,7 @@ public class UserController {
 	public String login(@RequestBody Login login) throws Exception{
 		UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = 
 				new UsernamePasswordAuthenticationToken(login.email, login.password);
-		System.out.println(login.email);
-		System.out.println(login.password);
+
 		try {
 			
 			Authentication authenticate = this.authenticationManager.authenticate(usernamePasswordAuthenticationToken);

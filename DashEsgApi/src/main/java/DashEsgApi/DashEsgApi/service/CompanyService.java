@@ -74,9 +74,12 @@ public class CompanyService {
 			throw new Exception("Este usuário não é um funcionário, você não pode adicionar ele na sua empresa!");
 		}
 		
+		if(user.getId_company() != null) {
+			throw new Exception("Este funcionário ja está atribuido a uma empresa!");
+		}
+		
 		Company company = this.companyRepository.findById(id_company).get();
 		user.setId_company(company.getId());
-		company.setEmployee_qty(company.getEmployee_qty() + 1);
 		
 		this.userRepository.save(user);
 		this.companyRepository.save(company);
@@ -90,13 +93,13 @@ public class CompanyService {
 		return companyRepository.findById(id).get();
 	}
 	
-	public String deleteEmployee(Integer id_employee) throws Exception {
+	public String deleteEmployee(String email) throws Exception {
 		
-		if(id_employee == null) {
+		if(email == null) {
 			throw new Exception("Esse funcionário não foi encontrado!");
 		}
 		
-		User u = userRepository.findById(id_employee).get();
+		User u = userRepository.findByEmail(email);
 		
 		u.setId_company(null);
 		
@@ -134,6 +137,7 @@ public class CompanyService {
 			return 0;
 		}
 	}
+
 	
 
 }
