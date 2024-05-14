@@ -13,6 +13,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import DashEsgApi.DashEsgApi.model.User;
 import DashEsgApi.DashEsgApi.repository.UserRepository;
 import DashEsgApi.DashEsgApi.service.TokenService;
 
@@ -31,15 +32,15 @@ public class FilterToken extends OncePerRequestFilter{
 		
 		String token;
 		
-		var authorizationHeader = request.getHeader("Authorization");
+		String authorizationHeader = request.getHeader("Authorization");
 		
 		if(authorizationHeader != null) {
 			token = authorizationHeader.replace("Bearer ", "");
-			var subject = this.tokenService.getSubject(token);
+			String subject = this.tokenService.getSubject(token);
 			
-			var usuario = this.userRepository.findByEmail(subject);
+			User usuario = this.userRepository.findByEmail(subject);
 			
-			var authentication = new UsernamePasswordAuthenticationToken(usuario,null, usuario.getAuthorities());
+			UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(usuario,null, usuario.getAuthorities());
 			
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 		}
