@@ -7,6 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import DashEsgApi.DashEsgApi.model.User;
+import DashEsgApi.DashEsgApi.model.UserAdmin;
 import DashEsgApi.DashEsgApi.model.UserDeveloper;
 import DashEsgApi.DashEsgApi.model.UserEmployee;
 import DashEsgApi.DashEsgApi.model.UserManager;
@@ -50,13 +51,16 @@ public class UserService {
 		User newUser;
 		
 		if(user.getUser_type() == 1) {
-			UserManager supervisor = new UserManager();
+			User supervisor = new UserManager();
 			newUser = supervisor.identifyUser(user);
 		}else if(user.getUser_type() == 2) {
-			UserEmployee funcionario = new UserEmployee();
+			User funcionario = new UserEmployee();
 			newUser = funcionario.identifyUser(user);
+		}else if(user.getUser_type() == 4) {
+			User admin = new UserAdmin();
+			newUser = admin.identifyUser(user);
 		}else {
-			UserDeveloper desenvolvedor = new UserDeveloper();
+			User desenvolvedor = new UserDeveloper();
 			newUser = desenvolvedor.identifyUser(user);
 		}
 		
